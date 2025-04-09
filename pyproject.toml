@@ -1,0 +1,22 @@
+[project]
+name = "data-simulator"
+version = "0.1.0"
+description = "Generate synthetic evaluation datasets from your own documents."
+authors = [
+    { name="Tahmid", email="tahmid@langwatch.ai" }
+]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "openai>=1.0.0",
+    "tqdm",
+    "pandas",
+    "python-dotenv"
+]
+
+[tool.setuptools]
+packages = ["data_simulator"]
+
+[project.urls]
+Repository = "https://github.com/langwatch/data-simulator"
