@@ -7,8 +7,6 @@ Just pass in your documents, and it will:
 - Generate realistic queries grounded in your use case
 - Return high-quality, ready-to-use query-doc pairs
 
-No manual tagging. No public benchmark assumptions. Just data that looks and feels like your production traffic.
-
 ---
 
 ## Getting Started
