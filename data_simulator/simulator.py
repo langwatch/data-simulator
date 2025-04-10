@@ -2,12 +2,13 @@ from typing import List, Dict
 from .llm import create_golden_dataset, filter_documents
 from openai import OpenAI
 from .document_processor import DocumentProcessor
+import json
 
 class DataSimulator:
     def __init__(self, api_key: str):
         self.client = OpenAI(api_key=api_key)
 
-    def generate(
+    def _generate(
         self,
         documents: Dict[str, str],
         context: str,
@@ -56,7 +57,29 @@ class DataSimulator:
 
         return output
     
-    def generate_from_files(
+    def generate_from_json(
+        self,
+        json_file_path: str,
+        context: str,
+        example_queries: str,
+        model_filter: str = "gpt-4o-mini",
+        model_query: str = "gpt-4o-mini"
+    ) -> List[Dict[str, str]]:
+        """Generate synthetic data from pre-chunked documents stored in a JSON file."""        
+        # Load the pre-chunked documents from the JSON file
+        with open(json_file_path, 'r') as f:
+            documents = json.load(f)
+            
+        # Use the existing generate method with the loaded documents
+        return self._generate(
+            documents=documents,
+            context=context,
+            example_queries=example_queries,
+            model_filter=model_filter,
+            model_query=model_query
+        )
+
+    def generate_from_docs(
         self,
         file_paths: List[str],
         context: str,
@@ -76,7 +99,7 @@ class DataSimulator:
             documents.update(file_chunks)
             
         # Use the existing generate method with the chunked documents
-        return self.generate(
+        return self._generate(
             documents=documents,
             context=context,
             example_queries=example_queries,
@@ -101,7 +124,7 @@ class DataSimulator:
         documents = processor.load_directory(directory_path)
         
         # Use the existing generate method with the chunked documents
-        return self.generate(
+        return self._generate(
             documents=documents,
             context=context,
             example_queries=example_queries,
