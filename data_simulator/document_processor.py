@@ -1,4 +1,4 @@
-from typing import List, Dict, Optional
+from typing import List, Dict
 from langchain_community.document_loaders import (
     PyPDFLoader,
     Docx2txtLoader,

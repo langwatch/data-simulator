@@ -1,4 +1,4 @@
-from typing import List, Dict, Optional
+from typing import List, Dict
 from .llm import create_golden_dataset, filter_documents
 from openai import OpenAI
 from .document_processor import DocumentProcessor
