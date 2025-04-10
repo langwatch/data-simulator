@@ -89,7 +89,6 @@ class DataSimulator:
         directory_path: str,
         context: str,
         example_queries: str,
-        file_extensions: Optional[List[str]] = None,
         chunk_size: int = 1000,
         chunk_overlap: int = 200,
         model_filter: str = "gpt-4o-mini",
@@ -99,10 +98,7 @@ class DataSimulator:
         processor = DocumentProcessor(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
         
         # Load and chunk all documents in the directory
-        documents = processor.load_directory(
-            directory_path=directory_path,
-            file_extensions=file_extensions
-        )
+        documents = processor.load_directory(directory_path)
         
         # Use the existing generate method with the chunked documents
         return self.generate(

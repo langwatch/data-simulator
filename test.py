@@ -7,12 +7,10 @@ load_dotenv()
 generator = DataSimulator(api_key=os.getenv("OPENAI_API_KEY"))
 
 # Generate from a single file
-results = generator.generate_from_directory(
-    directory_path="sample_dir",
+results = generator.generate_from_files(
+    file_paths=["test_data/nike_10k.pdf"],
     context="You're a financial support assistant for Nike, helping a financial analyst decide whether to invest in the stock.",
-    example_queries="how much revenue did nike make last year\nwhat risks does nike face\nwhat are nike's top 3 priorities",
-    chunk_size=1000,
-    chunk_overlap=200
+    example_queries="how much revenue did nike make last year\nwhat risks does nike face\nwhat are nike's top 3 priorities"
 )
 
 for item in results:

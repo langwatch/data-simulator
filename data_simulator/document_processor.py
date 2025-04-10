@@ -50,18 +50,13 @@ class DocumentProcessor:
             
         return result
     
-    def load_directory(self, directory_path: str, file_extensions: Optional[List[str]] = None) -> Dict[str, str]:
+    def load_directory(self, directory_path: str) -> Dict[str, str]:
         """Load all documents from a directory and split them into chunks."""
-        if file_extensions is None:
-            file_extensions = ['.pdf', '.docx', '.doc', '.txt', '.md', '.markdown']
-            
         result = {}
         for root, _, files in os.walk(directory_path):
             for file in files:
-                _, ext = os.path.splitext(file)
-                if ext.lower() in file_extensions:
-                    file_path = os.path.join(root, file)
-                    file_chunks = self.load_document(file_path)
-                    result.update(file_chunks)
+                file_path = os.path.join(root, file)
+                file_chunks = self.load_document(file_path)
+                result.update(file_chunks)
                     
         return result
