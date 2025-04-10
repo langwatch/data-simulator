@@ -1,7 +1,7 @@
-# query_doc_generator/generator.py
-from typing import List, Dict
+from typing import List, Dict, Optional
 from .llm import create_golden_dataset, filter_documents
 from openai import OpenAI
+from .document_processor import DocumentProcessor
 
 class DataSimulator:
     def __init__(self, api_key: str):
@@ -55,3 +55,60 @@ class DataSimulator:
             })
 
         return output
+    
+    def generate_from_files(
+        self,
+        file_paths: List[str],
+        context: str,
+        example_queries: str,
+        chunk_size: int = 1000,
+        chunk_overlap: int = 200,
+        model_filter: str = "gpt-4o-mini",
+        model_query: str = "gpt-4o-mini"
+    ) -> List[Dict[str, str]]:
+        """Generate synthetic data from document files."""
+        processor = DocumentProcessor(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+        
+        # Load and chunk all documents
+        documents = {}
+        for file_path in file_paths:
+            file_chunks = processor.load_document(file_path)
+            documents.update(file_chunks)
+            
+        # Use the existing generate method with the chunked documents
+        return self.generate(
+            documents=documents,
+            context=context,
+            example_queries=example_queries,
+            model_filter=model_filter,
+            model_query=model_query
+        )
+    
+    def generate_from_directory(
+        self,
+        directory_path: str,
+        context: str,
+        example_queries: str,
+        file_extensions: Optional[List[str]] = None,
+        chunk_size: int = 1000,
+        chunk_overlap: int = 200,
+        model_filter: str = "gpt-4o-mini",
+        model_query: str = "gpt-4o-mini"
+    ) -> List[Dict[str, str]]:
+        """Generate synthetic data from all documents in a directory."""
+        processor = DocumentProcessor(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+        
+        # Load and chunk all documents in the directory
+        documents = processor.load_directory(
+            directory_path=directory_path,
+            file_extensions=file_extensions
+        )
+        
+        # Use the existing generate method with the chunked documents
+        return self.generate(
+            documents=documents,
+            context=context,
+            example_queries=example_queries,
+            model_filter=model_filter,
+            model_query=model_query
+        )

@@ -12,7 +12,10 @@ dependencies = [
     "openai>=1.0.0",
     "tqdm",
     "pandas",
-    "python-dotenv"
+    "python-dotenv",
+    "langchain_community",
+    "langchain",
+    "pypdf"
 ]
 
 [tool.setuptools]
