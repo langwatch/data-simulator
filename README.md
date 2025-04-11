@@ -4,25 +4,13 @@
 
 ## Motivation
 
-**The Problem**: Building high-quality synthetic datasets for LLM applications is challenging. Most approaches treat all documents equally, but real-world document collections are messy:
+Real documents contain a mix of useful and irrelevant content. When generating synthetic data, this leads to:
 
-- Corporate documents filled with boilerplate legal text
-- Technical manuals with irrelevant metadata sections
-- Knowledge bases containing outdated or placeholder content
+- Queries that real users would never ask
+- Test sets that don't reflect actual usage
+- Wasted effort optimizing for the wrong things
 
-When you generate synthetic queries from these unfiltered documents, you end up with:
-
-1. **Unrealistic queries** that don't reflect what users actually ask
-2. **Distorted benchmarks** that don't measure what matters in production
-3. **Development time wasted** chasing improvements that won't impact real users
-
-**The Solution**: Data Simulator takes a different approach:
-
-- **Smart filtering** removes low-value content before query generation
-- **Context-aware prompting** creates queries aligned with your specific use case
-- **Complete triplets** provide document-query-answer combinations for end-to-end testing
-
-The result? A synthetic dataset that actually represents how your system will be used in the real world, leading to meaningful improvements in your LLM applications.
+Data Simulator filters out low-quality content first, then generates realistic queries and answers that match how your system will actually be used.
 
 ---
 
@@ -67,10 +55,10 @@ display_results(results)
 
 ```python
 {
-  "id": "doc1",
-  "document": "To reset your password, visit the settings page.",
-  "query": "how do I change my password",
-  "answer": "To reset your password, visit the settings page."
+  "id": "chunk_42",
+  "document": "Nike reported annual revenue of $44.5 billion for fiscal year 2022, an increase of 5% compared to the previous year.",
+  "query": "What was Nike's revenue growth in 2022?",
+  "answer": "Nike's revenue grew by 5% in fiscal year 2022, reaching $44.5 billion."
 }
 ```
 
