@@ -19,6 +19,7 @@ for i, item in enumerate(results_from_json[:2]):  # Print first 2 results
     print(f"Chunk ID: {item['id']}")
     print(f"Query: {item['query']}")
     print(f"Document Chunk: {item['document'][:100]}...")
+    print(f"Answer: {item['answer']}")
     print("-" * 50)
 
 # Option 2: Generate from document files
@@ -35,4 +36,5 @@ for i, item in enumerate(results_from_files[:2]):  # Print first 2 results
     print(f"Chunk ID: {item['id']}")
     print(f"Query: {item['query']}")
     print(f"Document Chunk: {item['document'][:100]}...")
+    print(f"Answer: {item['answer']}")
     print("-" * 50)
