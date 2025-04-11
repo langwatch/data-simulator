@@ -1,5 +1,7 @@
 # Data Simulator
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/langwatch/data-simulator/blob/main/data_simulator.ipynb)
+
 `data-simulator` is a lightweight Python library for generating synthetic datasets from your own corpus — perfect for testing, evaluating, or fine-tuning LLM Applications.
 
 ## Motivation
