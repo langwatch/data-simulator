@@ -1,5 +1,5 @@
 [project]
-name = "data-simulator"
+name = "llm-data-simulator"
 version = "0.1.0"
 description = "Generate synthetic evaluation datasets from your own documents."
 authors = [
@@ -17,9 +17,19 @@ dependencies = [
     "langchain",
     "pypdf"
 ]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Intended Audience :: Developers",
+    "Development Status :: 4 - Beta"
+]
 
 [tool.setuptools]
 packages = ["data_simulator"]
 
 [project.urls]
 Repository = "https://github.com/langwatch/data-simulator"
+Documentation = "https://github.com/langwatch/data-simulator"
+"Bug Tracker" = "https://github.com/langwatch/data-simulator/issues"

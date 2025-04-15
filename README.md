@@ -18,7 +18,13 @@ Data Simulator filters out low-quality content first, then generates realistic q
 
 ## Getting Started
 
-Install it locally:
+Install from PyPI:
+
+```bash
+pip install llm-data-simulator
+```
+
+Or install it locally:
 
 ```bash
 git clone https://github.com/langwatch/data-simulator.git
